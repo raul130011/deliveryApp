@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Livreur{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Nouveau livreur</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="col-md-6">
+
+    {{ include('livreur/_form.html.twig') }}
+
+    <a href="{{ path('app_livreur_index') }}">back to list</a>
+    </div>
+</div>
+</div>
+{% endblock %}

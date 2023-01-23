@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PointRelais{% endblock %}
+
+{% block body %}
+    <h1>PointRelais</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ point_relai.id }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ point_relai.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ point_relai.adresse }}</td>
+            </tr>
+            <tr>
+                <th>CodePostal</th>
+                <td>{{ point_relai.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ point_relai.ville }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ point_relai.pays }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ point_relai.tel }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ point_relai.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_point_relais_index') }}">back to list</a>
+
+    <a href="{{ path('app_point_relais_edit', {'id': point_relai.id}) }}">edit</a>
+
+    {{ include('point_relais/_delete_form.html.twig') }}
+{% endblock %}

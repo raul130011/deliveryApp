@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Client{% endblock %}
+
+{% block body %}
+        <!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Modifier client</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_client_index') }}">back to list</a>
+
+    {{ include('client/_delete_form.html.twig') }}
+    </div>
+    </div>
+{% endblock %}

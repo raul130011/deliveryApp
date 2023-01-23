@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Zoneliv{% endblock %}
+
+{% block body %}
+    <h1>Create new Zoneliv</h1>
+
+    {{ include('zoneliv/_form.html.twig') }}
+
+    <a href="{{ path('app_zoneliv_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Prix{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Modifier prix de Livraison € par Kg</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+    {{ include('LivreurTmp/prix/_form.html.twig', {'button_label': 'Update','zones':zones,'prices':prices}) }}
+    </div>
+</div>
+{% endblock %}

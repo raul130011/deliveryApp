@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delivery App - Points de relais{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Points de relais</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>Tel</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for point_relai in point_relais %}
+            <tr>
+                <td>{{ point_relai.id }}</td>
+                <td>{{ point_relai.nom }}</td>
+                <td>{{ point_relai.adresse }}</td>
+                <td>{{ point_relai.codePostal }}</td>
+                <td>{{ point_relai.ville }}</td>
+                <td>{{ point_relai.pays }}</td>
+                <td>{{ point_relai.tel }}</td>
+                <td>{{ point_relai.email }}</td>
+                <td>
+                    <a href="{{ path('app_point_relais_show', {'id': point_relai.id}) }}">show</a>
+                    <a href="{{ path('app_point_relais_edit', {'id': point_relai.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_point_relais_new') }}">Create new</a>
+    </div>
+    </div>
+</div>
+{% endblock %}

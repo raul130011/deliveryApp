@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delivery App - Zones de livraison{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Zones de livraison</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Kilometrage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for zoneliv in zonelivs %}
+            <tr>
+                <td>{{ zoneliv.id }}</td>
+                <td>{{ zoneliv.name }}</td>
+                <td>{{ include('LivreurTmp/prix/kilometrage.html.twig', {'kilometrage': zoneliv.kilometrage }) }}</td>
+                <td>
+                    <a href="{{ path('app_zoneliv_show', {'id': zoneliv.id}) }}">show</a>
+                    <a href="{{ path('app_zoneliv_edit', {'id': zoneliv.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_zoneliv_new') }}">Create new</a>
+    </div>
+    </div>
+</div>
+{% endblock %}

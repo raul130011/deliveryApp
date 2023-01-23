@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delivery App - Liste livreursx{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Liste livreurs</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>NomContact</th>
+                <th>PrenomContact</th>
+                <th>Email</th>
+                <th>Tel1</th>
+                <th>Tel2</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livreur in livreurs %}
+            <tr>
+                <td>{{ livreur.id }}</td>
+                <td>{{ livreur.nom }}</td>
+                <td>{{ livreur.nomContact }}</td>
+                <td>{{ livreur.prenomContact }}</td>
+                <td>{{ livreur.email }}</td>
+                <td>{{ livreur.tel1 }}</td>
+                <td>{{ livreur.tel2 }}</td>
+                <td>{{ livreur.adresse }}</td>
+                <td>{{ livreur.codePostal }}</td>
+                <td>{{ livreur.ville }}</td>
+                <td>{{ livreur.pays }}</td>
+                <td>
+                    <a href="{{ path('app_livreur_show', {'id': livreur.id}) }}">show</a>
+                    <a href="{{ path('app_livreur_edit', {'id': livreur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livreur_new') }}">Create new</a>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Passer une Commande{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('passercommande') }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        window.getPointRelaisUrl = "{{ path('app_point_relais_list') }}";
+        window.getOnePointRelaisUrl = "{{ path('app_point_relais_one') }}";
+        window.getAdresseClient = "{{ path('app_client_get_adresse') }}";
+        window.getPriceColis = "{{ path('get_client_prix_by_livreur') }}";
+    </script>
+    {{ parent() }}
+    {{ encore_entry_script_tags('passercommande') }}
+
+{% endblock %}
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Passer une commande</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+            <div class="col-md-8">
+                <form>
+                <div id="smartwizard">
+
+                    <ul class="nav">
+                        <li class="nav-item">
+                        <a class="nav-link" href="#step-1">
+                            <div class="num">1</div>
+                            Choisir iténiraire
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#step-2">
+                            <span class="num">2</span>
+                            Colis
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#step-3">
+                            <span class="num">3</span>
+                            Livreur
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link " href="#step-4">
+                            <span class="num">4</span>
+                            Payement
+                        </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link " href="#step-5">
+                            <span class="num">5</span>
+                            Récapitulatif
+                        </a>
+                        </li>
+                    </ul>
+                
+                    <div class="tab-content">
+                        <div id="step-1" class="tab-pane row" role="tabpanel" aria-labelledby="step-1">
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label for="modeLivraison" class="form-label">Mode de livraison</label>
+                                    <select class="form-select" aria-label="Default select example" id="modeLivraison" name="typetravail">
+                                        <option value="1">Livraison a domicile</option>
+                                        <option value="2">Livraison point de relais</option>
+                                        <option value="3">Livraison Lieu travail</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <label for="adresseDepart" class="form-label">Adresse départ</label>
+                                    <input type="text" class="form-control" id="adresseDepart" name="adresseDepart" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-4">
+                                    <label for="villeDepart" class="form-label">Ville départ</label>
+                                    <input type="text" class="form-control" id="villeDepart" name="villeDepart" placeholder="">
+                                </div>
+                                <div class="mb-3 col-md-3">
+                                    <label for="codePostalDepart" class="form-label">Code postal</label>
+                                    <input type="text" class="form-control" id="codePostalDepart" name="codePostalDepart" placeholder="">
+                                </div>
+                                <div class="mb-3 col-md-4">
+                                    <label for="paysDepart" class="form-label">Pays</label>
+                                    <input type="text" class="form-control" id="paysDepart" name="paysDepart" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="showAdresseArrivee">
+                                        <label class="form-check-label" for="showAdresseArrivee">
+                                            Adresse Client Par default
+                                        </label>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div id="pointDeRelaisList" class="row" style="display:none;">
+                                <div class="mb-3 col-md-12">
+                                    <label for="listPointRelais" class="form-label">Points de relais</label>
+                                    <select class="form-select" aria-label="Default select example" id="listPointRelais" name="listPointRelais">
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="adresseArrivee" style="">   
+                                <div class="row">
+                                    <div class="mb-3 col-md-12">
+                                        <label for="adresseFinal" class="form-label">Adresse destination</label>
+                                        <input type="text" class="form-control" id="adresseFinal" name="adresseFinal" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col-md-4">
+                                        <label for="villeFinal" class="form-label">Ville destination</label>
+                                        <input type="text" class="form-control" id="villeFinal" name="villeFinal" placeholder="">
+                                    </div>
+                                    <div class="mb-3 col-md-3">
+                                        <label for="codePostalFinal" class="form-label">Code postal destination</label>
+                                        <input type="text" class="form-control" id="codePostalFinal" name="codePostalFinal" placeholder="">
+                                    </div>
+                                    <div class="mb-3 col-md-4">
+                                        <label for="paysFinal" class="form-label">Pays destination</label>
+                                        <input type="text" class="form-control" id="paysFinal" name="paysFinal" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
+                            <div class="row">
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-success" onclick="newColis(); return false;">Nouveau</button>
+                                </div>
+                            </div>
+                            <div id="content_Colis" class="row h-auto">
+                            </div>
+                        </div>
+                        <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
+                            <div class="row h-auto">
+                                <div class="col-md-12">
+                                    <div class="form-check" id="content_Livreurs">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
+                            <div id="content_paiementModality" class="row h-auto">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="modalityPayment" id="modalityPayment1" checked>
+                                        <label class="form-check-label" for="modalityPayment1">
+                                            Paypal
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="modalityPayment" id="modalityPayment2">
+                                        <label class="form-check-label" for="modalityPayment2">
+                                            Stripe
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
+                            <div class=".border-left-primary" id="adresseDepartRec">
+
+                            </div>
+                            <div class=".border-left-primary" id="adresseArriveeRec">
+                            
+                            </div>
+                            <div class=".border-left-primary" id="prixLivreurRec">
+
+                            </div>
+                            <div class=".border-left-primary" id="MethodePayement">
+
+                            </div>
+                            <class ="row">
+                                <div class="col-md-10">
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary" type="submit">Envoyer</button>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                
+                    <!-- Include optional progressbar HTML -->
+                    <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+             </div>
+    </div>
+</div>  
+<div class="mask" style="display:none;">
+    <div class="preloader">    
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-ripple" style="background:0 0"><circle cx="50" cy="50" r="4.719" fill="none" stroke="#1d3f72" stroke-width="2"><animate attributeName="r" calcMode="spline" values="0;40" keyTimes="0;1" dur="3" keySplines="0 0.2 0.8 1" begin="-1.5s" repeatCount="indefinite"/><animate attributeName="opacity" calcMode="spline" values="1;0" keyTimes="0;1" dur="3" keySplines="0.2 0 0.8 1" begin="-1.5s" repeatCount="indefinite"/></circle><circle cx="50" cy="50" r="27.591" fill="none" stroke="#5699d2" stroke-width="2"><animate attributeName="r" calcMode="spline" values="0;40" keyTimes="0;1" dur="3" keySplines="0 0.2 0.8 1" begin="0s" repeatCount="indefinite"/><animate attributeName="opacity" calcMode="spline" values="1;0" keyTimes="0;1" dur="3" keySplines="0.2 0 0.8 1" begin="0s" repeatCount="indefinite"/></circle></svg>
+    </div>
+</div>  
+{% endblock %}

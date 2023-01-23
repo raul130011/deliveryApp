@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delivery App - Liste commandes{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Liste commandes</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>AdresseDepart</th>
+                <th>AdresseArrivee</th>
+                <th>Type</th>
+                <th>Etat</th>
+                <th>Creneau</th>
+                <th>PrixHt</th>
+                <th>PrixTtc</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.adresseDepart }}</td>
+                <td>{{ commande.adresseArrivee }}</td>
+                <td>{{ commande.type }}</td>
+                <td>{{ commande.etat }}</td>
+                <td>{{ commande.creneau }}</td>
+                <td>{{ commande.prixHt }}</td>
+                <td>{{ commande.prixTtc }}</td>
+                <td>
+                    <a href="{{ path('app_livreur_commande_show', {'id': commande.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_new') }}">Create new</a>
+    </div>
+    </div>
+</div>    
+{% endblock %}

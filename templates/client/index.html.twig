@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delivery App - Liste clients{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('datatableTbl') }}
+
+{% endblock %}
+{% block javascripts %}
+     {{ parent() }}
+     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    {{ encore_entry_script_tags('datatableTbl') }}
+{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Liste clients</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+    <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>NomContact</th>
+                <th>Email</th>
+                <th>Tel1</th>
+                <th>Tel2</th>
+                <th>Adresse</th>
+                <th>CodePostal</th>
+                <th>Ville</th>
+                <th>Pays</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.nomContact }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.tel1 }}</td>
+                <td>{{ client.tel2 }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.codePostal }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.pays }}</td>
+                <td>
+                    <a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <a href="{{ path('app_client_new') }}">Create new</a>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Nouvelle Commande</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>AdresseDepart</th>
+                <td>{{ commande.adresseDepart }}</td>
+            </tr>
+            <tr>
+                <th>AdresseArrivee</th>
+                <td>{{ commande.adresseArrivee }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ commande.type }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ commande.etat }}</td>
+            </tr>
+            <tr>
+                <th>Creneau</th>
+                <td>{{ commande.creneau }}</td>
+            </tr>
+            <tr>
+                <th>PrixHt</th>
+                <td>{{ commande.prixHt }}</td>
+            </tr>
+            <tr>
+                <th>PrixTtc</th>
+                <td>{{ commande.prixTtc }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livreur_commande_index') }}">back to list</a>
+</div>
+</div>
+{% endblock %}

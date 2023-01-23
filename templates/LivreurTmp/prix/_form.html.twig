@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+    <div class="responsive-table">
+        <table class="table">
+            <thead>
+                {% for zon in zones %}
+                    <th>{{ zon.name }}  {{ include('LivreurTmp/prix/kilometrage.html.twig', {'kilometrage': zon.kilometrage }) }} </th>
+                {% endfor %}
+            </thead>
+            <tbody>
+                <tr>
+                {% for zon in zones %}
+                    <td>
+                        <input type="hidden" name="zoneid[]" value="{{ zon.id }}">
+                        <input type="number" name="prixht[]" value="{{ prices[zon.id] }}" required="">
+                    </td>                
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
