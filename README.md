@@ -4,7 +4,7 @@ Delivery Application
 Applicatiion de livraison de colis entre deux adresses .
 
 
-étape installation : 
+étapes installation : 
 
 1/git clone https://github.com/raul130011/deliveryApp 
 
